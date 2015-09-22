@@ -32,6 +32,8 @@ class DB_Functions {
         if ($result) {
             // get user details 
             $uid = mysql_insert_id(); // last inserted id
+            $query = " INSERT INTO cliente ( cpf_cliente, cnpj_cliente, tel_cliente, cel_cliente, endereco_cliente, users_uid )  VALUES ( '', '', '', '', '', '$uid') "; 
+            $sql = mysql_query($query);
             $result = mysql_query("SELECT * FROM users WHERE uid = $uid");
             // return user details
             return mysql_fetch_array($result);
