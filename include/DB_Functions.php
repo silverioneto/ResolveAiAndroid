@@ -67,8 +67,8 @@ class DB_Functions {
         }
     }
 
-    public function getUserByEmail($email){
-        $result = mysql_query("SELECT * FROM users AS u WHERE email = '$email'") or die(mysql_error());
+    public function getUserByID($id){
+        $result = mysql_query("SELECT * FROM users AS u WHERE uid = '$id'") or die(mysql_error());
 
         $no_of_rows = mysql_num_rows($result);
         if ($no_of_rows > 0) {
