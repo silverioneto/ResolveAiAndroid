@@ -1,6 +1,6 @@
 <?php 
 
-        require_once '../include/DB_Functions.php';
+        require_once 'dadosCliente.php';
         $db = new DB_Functions();
         
         
@@ -12,6 +12,10 @@
             $response["uid"] = $user["unique_id"];
             $response["user"]["name"] = $user["name"];
             $response["user"]["email"] = $user["email"];
+            $response["user"]["cpf"] = $user["cpf_cliente"];
+            $response["user"]["tel"] = $user["tel_cliente"];
+            $response["user"]["cel"] = $user["cel_cliente"];
+            $response["user"]["end"] = $user["endereco_cliente"];
             $response["user"]["created_at"] = $user["created_at"];
             $response["user"]["updated_at"] = $user["updated_at"];
             echo json_encode($response);
