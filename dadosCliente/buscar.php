@@ -1,7 +1,7 @@
 <?php 
 
         require_once 'dadosCliente.php';
-        $db = new DB_Functions();
+        $db = new dadosCliente();
         
         
         $id = $_POST['id'];
