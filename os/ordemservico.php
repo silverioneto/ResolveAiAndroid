@@ -2,7 +2,7 @@
 /**
 * 
 */
-class OrdemServico extends
+class OrdemServico
 {
 	private $id_func;
 	private $id_user; 

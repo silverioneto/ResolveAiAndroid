@@ -19,17 +19,16 @@ class OS_DAO{
          
     }
 
-    public function InserirOS($os)
-    {
-    	 $query = " INSERT INTO ordem_servico ( id_func, id_user, tipo_equip_os, ident_equip_os, descri_equip_os, 
+    public function InserirOS($os){
+    	 $query = "INSERT INTO ordem_servico ( id_func, id_user, tipo_equip_os,descri_equip_os, 
                                 defeito_equip_os, status_os )  
-                    VALUES ('$os->id_func','$os->id_user','$os->tipo_equip','$os->ident_equip','$os->descri_equip',
-                            '$os->defeito_equip','$os->status')"; 
+                    VALUES ('$os->id_func','$os->id_user','$os->tipo_equip','$os->descri_equip',
+                            '$os->defeito_equi','$os->status');"; 
 		 $result = mysql_query($query); 
 
 		 if( $result )
 		 {
-		 	echo json_encode($result);
+		 	return $result;
 		 }
 		 else
 		 {
@@ -37,6 +36,19 @@ class OS_DAO{
 		 }
     }
 
+    public function mostrarOSCliente($userid){
+        $query = "SELECT * FROM ordem_servico WHERE id_user = '$userid';";
+
+        $result = mysql_query($query);
+
+        $no_of_rows = mysql_num_rows($result);
+        if ($no_of_rows > 0) {
+            $result = mysql_fetch_array($result);
+            return $result;
+        }else{
+            return false;
+        }
+    }
 }
 
 /*

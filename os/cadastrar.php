@@ -20,28 +20,26 @@ if (isset($_POST['opcao'])) {
     $descri_serv_os = $_POST['descri_serv_os'];  
     $valor_serv_os = $_POST['valor_serv_os'];
 
-    if($opcao == 1){ //Inserir
+    if($opcao == '1'){ //Inserir
         $os->id_func = '1';
         $os->id_user = $id_user;
         $os->tipo_equip = $tipo_equip_os;
         $os->descri_equip = $descri_equip_os;
-        $os->defeito_equip = $defeito_equip;
+        $os->defeito_equi = $defeito_equip;
         $os->status = $status_os;
 
-   
-        // create a new user
         $ordemservico = $db->InserirOS($os);
         if ($ordemservico) {
             $numeroos = mysql_insert_id();
             // user stored successfully
             $response["error"] = FALSE;
-            $response["numeroos"] = 
+            $response["numeroos"] = $numeroos;
             
             echo json_encode($response);
         } else {
             // user failed to store
             $response["error"] = TRUE;
-            $response["error_msg"] = "Erro Desconhecido!";
+            $response["error_msg"] = "Não foi possível solicitar OS!";
             echo json_encode($response);
         }
     }
