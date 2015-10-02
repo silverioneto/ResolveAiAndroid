@@ -5,7 +5,7 @@
 class OrdemServico extends
 {
 	private $id_func;
-	private $id_cliente; 
+	private $id_user; 
 	private $tipo_equip;
 	private $descri_equip;
 	private $defeito_equi;

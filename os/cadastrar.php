@@ -4,14 +4,12 @@ require_once 'OS_DAO.php';
 require_once 'ordemservico.php';
 $db = new OS_DAO();
 $os = new OrdemServico();
-// json response array
-$response = array("error" => FALSE);
- 
+
 if (isset($_POST['opcao'])) {
 
     $opcao = $_POST['opcao'];
     $id_func = $_POST['id_func'];  
-    $id_cliente = $_POST['id_cliente'];  
+    $id_user = $_POST['id_user'];  
     $tipo_equip_os = $_POST['tipo_equip_os'];  
     $ident_equip_os = $_POST['ident_equip_os'];  
     $descri_equip_os = $_POST['descri_equip_os'];  
@@ -22,21 +20,23 @@ if (isset($_POST['opcao'])) {
     $descri_serv_os = $_POST['descri_serv_os'];  
     $valor_serv_os = $_POST['valor_serv_os'];
 
-    if($opcao == 1){
-        $id_func = '1';
-        $os->
+    if($opcao == 1){ //Inserir
+        $os->id_func = '1';
+        $os->id_user = $id_user;
+        $os->tipo_equip = $tipo_equip_os;
+        $os->descri_equip = $descri_equip_os;
+        $os->defeito_equip = $defeito_equip;
+        $os->status = $status_os;
 
    
         // create a new user
-        $user = $db->storeUser($name, $email, $password);
-        if ($user) {
+        $ordemservico = $db->InserirOS($os);
+        if ($ordemservico) {
+            $numeroos = mysql_insert_id();
             // user stored successfully
             $response["error"] = FALSE;
-            $response["uid"] = $user["unique_id"];
-            $response["user"]["name"] = $user["name"];
-            $response["user"]["email"] = $user["email"];
-            $response["user"]["created_at"] = $user["created_at"];
-            $response["user"]["updated_at"] = $user["updated_at"];
+            $response["numeroos"] = 
+            
             echo json_encode($response);
         } else {
             // user failed to store

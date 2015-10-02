@@ -1,13 +1,14 @@
 <?php 
 
 class OS_DAO{
+    
 
-private $db;
- 
+    private $db;
+
     //put your code here
     // constructor
     function __construct() {
-        require_once 'DB_Connect.php';
+        require_once '../include/DB_Connect.php';
         // connecting to database
         $this->db = new DB_Connect();
         $this->db->connect();
@@ -18,9 +19,12 @@ private $db;
          
     }
 
-    public function InserirOS($OS)
+    public function InserirOS($os)
     {
-    	 $query = " INSERT INTO os ( id_func, id_cliente, tipo_equip_os, ident_equip_os, descri_equip_os, defeito_equip_os, solucao_equip_os, valor_total_os, status_os, descri_serv_os, valor_serv_os )  VALUES ( '$id_func', '$id_cliente', '$tipo_equip_os', '$ident_equip_os', '$descri_equip_os', '$defeito_equip_os', '$solucao_equip_os', '$valor_total_os', '$status_os', '$descri_serv_os', '$valor_serv_os' ) "; 
+    	 $query = " INSERT INTO ordem_servico ( id_func, id_user, tipo_equip_os, ident_equip_os, descri_equip_os, 
+                                defeito_equip_os, status_os )  
+                    VALUES ('$os->id_func','$os->id_user','$os->tipo_equip','$os->ident_equip','$os->descri_equip',
+                            '$os->defeito_equip','$os->status')"; 
 		 $result = mysql_query($query); 
 
 		 if( $result )
