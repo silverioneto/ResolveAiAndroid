@@ -42,12 +42,40 @@ class OS_DAO{
         $result = mysql_query($query);
 
         $no_of_rows = mysql_num_rows($result);
-        if ($no_of_rows > 0) {
-            $result = mysql_fetch_array($result);
+        if ($no_of_rows > 0) {            
             return $result;
         }else{
             return false;
         }
+    }
+
+    public function buscarOS($osID,$userID){
+        $query = "SELECT * FROM ordem_servico WHERE id_user = '$userID' AND _id = '$osID';";
+
+        $result = mysql_query($query);
+
+        $no_of_rows = mysql_num_rows($result);
+        if ($no_of_rows > 0) {
+            $result = mysql_fetch_array($result);            
+            return $result;
+        }else{
+            return false;
+        }
+    }
+
+    public function alterarOS($osID,$os){
+        $query = "UPDATE ordem_servico set tipo_equip_os = '$os->tipo_equip',
+                                           descri_equip_os = '$os->descri_equip',
+                                           defeito_equip_os = '$os->defeito_equi'
+                                           WHERE _id = '$osID' AND id_user = '$os->id_user';";                                             
+        $result = mysql_query($query);                                         
+        
+        if ($result) {
+                       
+            return $result;
+        }else{
+            return NULL;
+        }                                   
     }
 }
 
