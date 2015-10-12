@@ -77,6 +77,24 @@ class OS_DAO{
             return NULL;
         }                                   
     }
+
+    public function buscarQTD($userid,$status){
+        if($status == 0){
+            $query = "SELECT COUNT(*) FROM ordem_servico WHERE id_user = '$userid';";
+        }else{
+            $query = "SELECT COUNT(*) FROM ordem_servico WHERE id_user = '$userid' AND status_os = '$status';";
+        }
+
+        $result = mysql_query($query);                                         
+        
+        if ($result) {
+            $result = mysql_fetch_array($result); 
+                       
+            return $result;
+        }else{
+            return NULL;
+        }   
+    }
 }
 
 /*
